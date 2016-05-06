@@ -38,4 +38,18 @@ public class ClientTest {
     assertEquals(1, Client.all().size());
   }
 
+  @Test
+  public void Client_ClientObjectsEqual(){
+    Client bill = new Client("Bill", "Gates");
+    Client bill2 = new Client("Bill", "Gates");
+    assertTrue(bill.equals(bill2));
+  }
+
+  @Test
+  public void Client_FindClientinData(){
+    Client bill = new Client("Bill", "Gates");
+    bill.save();
+    assertTrue(bill.equals(Client.find(bill.getId())));
+  }
+
 }
