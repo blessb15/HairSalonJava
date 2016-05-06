@@ -26,21 +26,21 @@ public class Stylist {
 
   public void save(){
     try(Connection con = DB.sql2o.open()){
-      String sql = "INSERT INTO clients (name, contact) VALUES (:name, :contact)";
+      String sql = "INSERT INTO stylists (name, contact) VALUES (:name, :contact)";
       this.id = (int) con.createQuery(sql, true).addParameter("name", this.name).addParameter("contact", this.contact).executeUpdate().getKey();
     }
   }
 
   public static List<Stylist> all() {
     try(Connection con = DB.sql2o.open()){
-      String sql = "SELECT name, contact, id FROM clients";
+      String sql = "SELECT name, contact, id FROM stylists";
       return con.createQuery(sql).executeAndFetch(Stylist.class);
     }
   }
 
   public static Stylist find(int id) {
     try(Connection con = DB.sql2o.open()){
-      String sql = "SELECT name, contact, id FROM clients WHERE id = :id";
+      String sql = "SELECT name, contact, id FROM stylists WHERE id = :id";
       Stylist newStylist = con.createQuery(sql).addParameter("id", id).executeAndFetchFirst(Stylist.class);
       return newStylist;
     }
@@ -52,7 +52,7 @@ public class Stylist {
       return false;
     } else {
       Stylist newStylist = (Stylist) obj;
-      return newStylist.getName().equals(this.getName()) && newStylist.getLastName().equals(this.getLastName());
+      return newStylist.getName().equals(this.getName()) && newStylist.getContact().equals(this.getContact());
     }
 
   }
