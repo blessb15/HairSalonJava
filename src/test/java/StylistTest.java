@@ -21,33 +21,33 @@ public class StylistTest {
 
   @Test
   public void Stylist_checkifStylistInstiatesCorrectly_true(){
-    Stylist gill = new Stylist("Gill","Bates");
+    Stylist gill = new Stylist("Gill","123-444-4523");
     assertTrue(gill instanceof Stylist);
   }
 
   @Test
   public void Stylist_checkifStylistInstiateswithName_Gill(){
-    Stylist gill = new Stylist("Gill","Bates");
+    Stylist gill = new Stylist("Gill","123-444-4523");
     assertEquals("Gill", gill.getName());
   }
 
   @Test
   public void Stylist_checkifInstanceofStylistSavestoDataBase(){
-    Stylist gill = new Stylist("Gill","Bates");
+    Stylist gill = new Stylist("Gill","123-444-4523");
     gill.save();
     assertEquals(1, Stylist.all().size());
   }
 
   @Test
   public void Stylist_StylistObjectsEqual(){
-    Stylist gill = new Stylist("Gill", "Bates");
-    Stylist gill2 = new Stylist("Gill", "Bates");
+    Stylist gill = new Stylist("Gill", "123-444-4523");
+    Stylist gill2 = new Stylist("Gill", "123-444-4523");
     assertTrue(gill.equals(gill2));
   }
 
   @Test
   public void Stylist_FindStylistinData(){
-    Stylist gill = new Stylist("Gill", "Bates");
+    Stylist gill = new Stylist("Gill", "123-444-4523");
     gill.save();
     assertTrue(gill.equals(Stylist.find(gill.getId())));
   }
@@ -55,12 +55,22 @@ public class StylistTest {
   @Test
   public void Stylist_checkifClientsHoldStylistId(){
     Client bill = new Client("Bill", "Gates");
-    Stylist gill = new Stylist("Gill", "Bates");
+    Stylist gill = new Stylist("Gill", "503-122-6543");
     bill.save();
     gill.save();
     gill.addClient(bill);
     Stylist foundStylist = Stylist.find(gill.getId());
     assertTrue(bill.equals(foundStylist.getClient(bill.getId())));
+  }
+
+  @Test
+  public void Stylist_checkforAllClientsStoredinStylist(){
+    Stylist gill = new Stylist("Gill", "453-323-5678");
+    Client bill = new Client("Bill", "Gates");
+    gill.save();
+    bill.save();
+    gill.addClient(bill);
+    assertTrue(gill.allClients().contains(bill));
   }
 
 }
