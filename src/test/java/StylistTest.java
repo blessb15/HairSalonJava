@@ -21,35 +21,46 @@ public class StylistTest {
 
   @Test
   public void Stylist_checkifStylistInstiatesCorrectly_true(){
-    Stylist will = new Stylist("Will","Bates");
-    assertTrue(will instanceof Stylist);
+    Stylist gill = new Stylist("Gill","Bates");
+    assertTrue(gill instanceof Stylist);
   }
 
   @Test
-  public void Stylist_checkifStylistInstiateswithName_Will(){
-    Stylist will = new Stylist("Will","Bates");
-    assertEquals("Will", will.getName());
+  public void Stylist_checkifStylistInstiateswithName_Gill(){
+    Stylist gill = new Stylist("Gill","Bates");
+    assertEquals("Gill", gill.getName());
   }
 
   @Test
   public void Stylist_checkifInstanceofStylistSavestoDataBase(){
-    Stylist will = new Stylist("Will","Bates");
-    will.save();
+    Stylist gill = new Stylist("Gill","Bates");
+    gill.save();
     assertEquals(1, Stylist.all().size());
   }
 
   @Test
   public void Stylist_StylistObjectsEqual(){
-    Stylist will = new Stylist("Will", "Bates");
-    Stylist will2 = new Stylist("Will", "Bates");
-    assertTrue(will.equals(will2));
+    Stylist gill = new Stylist("Gill", "Bates");
+    Stylist gill2 = new Stylist("Gill", "Bates");
+    assertTrue(gill.equals(gill2));
   }
 
   @Test
   public void Stylist_FindStylistinData(){
-    Stylist will = new Stylist("Will", "Bates");
-    will.save();
-    assertTrue(will.equals(Stylist.find(will.getId())));
+    Stylist gill = new Stylist("Gill", "Bates");
+    gill.save();
+    assertTrue(gill.equals(Stylist.find(gill.getId())));
+  }
+
+  @Test
+  public void Stylist_checkifClientsHoldStylistId(){
+    Client bill = new Client("Bill", "Gates");
+    Stylist gill = new Stylist("Gill", "Bates");
+    bill.save();
+    gill.save();
+    gill.addClient(bill);
+    Stylist foundStylist = Stylist.find(gill.getId());
+    assertTrue(bill.equals(foundStylist.getClient(bill.getId())));
   }
 
 }
