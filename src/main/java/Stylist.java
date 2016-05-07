@@ -4,7 +4,7 @@ import java.util.List;
 public class Stylist {
   private String name;
   private String contact;
-  private static int id;
+  private int id;
 
   public Stylist(String name, String contact) {
     this.name = name;
