@@ -36,6 +36,13 @@ public class Client {
     }
   }
 
+  public static void delete(Client client){
+    try(Connection con = DB.sql2o.open()){
+      String sql = "DELETE FROM clients WHERE id = :id";
+      con.createQuery(sql).addParameter("id", client.getId()).executeUpdate();
+    }
+  }
+
   public void save(){
     try(Connection con = DB.sql2o.open()){
       String sql = "INSERT INTO clients (first_name, last_name) VALUES (:first_name, :last_name)";

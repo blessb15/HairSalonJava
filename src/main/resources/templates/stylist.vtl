@@ -1,10 +1,19 @@
-<h1>$stylist.getName()</h1>
+<h1 class="center">$stylist.getName()</h1>
+<h5 class="center">Contact number: $stylist.getContact()</h5>
 
-<ul>
-  #foreach($client in $stylist.getClient())
-   <li>$client.getFirstName(), $client.getLastName()</li>
-  #end
-</ul>
-
-<a href="/stylists/$stylist.getId()/clients/new">Add a new clients</a>
-<a href="/stylists">All stylists</a>
+<h3 class="center">Clients</h3>
+#foreach($client in $stylist.allClients())
+  <h5 class="center">$client.getFirstName(), $client.getLastName()</h5>
+#end
+<br>
+<form action="/stylists/$stylist.getId()/clients/new">
+  <center><button type="submit" class="btn btn-success">Add new clients</button></center>
+</form>
+<br>
+<form action="/stylists">
+  <center><button type="submit" class="btn btn-success">All stylists</button></center>
+</form>
+<br>
+<form action="/stylists/$stylist.getId()/delete">
+  <center><button type="submit" class="btn btn-danger">Delete Stylist</button></center>
+</form>
