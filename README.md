@@ -7,7 +7,7 @@ Page where Stylists can have clients in one to many relationship
 * _Download files._
 * _Create database named hair_salon._
 * _type in your console: psql hair_salon < hair_salon.sql_
-* _type in your console: gradle run
+* _type in your console: gradle run_
 * _run this in browser: localhost:4567_
 
 ## Known Bugs
