@@ -2,6 +2,12 @@
 
 Page where Stylists can have clients in one to many relationship
 
+## Setup Instructions
+
+* _Download files._
+* _Create database named hair_salon._
+* _type in you console: psql hair_salon < hair_salon.sql_
+
 ## Known Bugs
 
 _No current known bugs._
